@@ -37,6 +37,12 @@ app.delete('todos/:id', (req, res) => {
     res.status(204).send(); // send a 204 No Content response
 });
 
+// error handling middleware
+app.use((err, req, res, next) => {
+    res.status(500).json({ message: 'Internal Server Error' });
+})
+
+// starting the server
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`server is running on : http://localhost:${process.env.PORT}`);
