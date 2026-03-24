@@ -37,7 +37,7 @@ app.delete('todos/:id', (req, res) => {
     res.status(204).send(); // send a 204 No Content response
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`server is running on : http://localhost:${process.env.PORT}`);
 });
