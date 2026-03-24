@@ -1,3 +1,5 @@
+require('dotenv').config(); // load environment variables from .env fil
+
 const express = require('express');
 const app = express();
 app.use(express.json()); // parse JSON bodies
@@ -33,4 +35,9 @@ app.delete('todos/:id', (req, res) => {
     todos = todos.filter((t) => t.id !== id); // remove the todo with the specified id
     if (todos.length === initialLength) return res.status(404).json({ message: 'todo Not Found' }); // if no todo was removed, it means it was not found
     res.status(204).send(); // send a 204 No Content response
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`server is running on : http://localhost:${process.env.PORT}`);
 });
