@@ -25,3 +25,12 @@ app.patch('/todos/:id', (req, res) => {
     Object.assign(todo, req.body); // update the todo with the new data
     res.status(200).json(todo);
 });
+
+// DELETE a todo
+app.delete('todos/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const initialLength = todos.length;
+    todos = todos.filter((t) => t.id !== id); // remove the todo with the specified id
+    if (todos.length === initialLength) return res.status(404).json({ message: 'todo Not Found' }); // if no todo was removed, it means it was not found
+    res.status(204).send(); // send a 204 No Content response
+});
